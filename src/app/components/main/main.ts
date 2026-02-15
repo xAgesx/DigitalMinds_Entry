@@ -17,7 +17,7 @@ export class Main {
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
-  private model: THREE.Group | null = null; // Store your custom model here
+  private model: THREE.Group | null = null; 
   private particles!: THREE.Points;
   
   private ringPos = { x: 0, y: 0 };
@@ -33,7 +33,7 @@ export class Main {
     this.initThree();
     this.addLights();
     this.createParticles();
-    this.loadCustomModel(); // Load your model instead of the shape
+    this.loadCustomModel();
     this.animate();
   }
 
@@ -57,11 +57,9 @@ export class Main {
 
   private loadCustomModel() {
     const loader = new GLTFLoader();
-    // Path to your model file (ensure it is in src/assets/)
     loader.load('/Pot.glb', (gltf) => {
       this.model = gltf.scene;
       
-      // Center the model
       const box = new THREE.Box3().setFromObject(this.model);
       const center = box.getCenter(new THREE.Vector3());
       this.model.position.sub(center);
@@ -73,11 +71,11 @@ export class Main {
   }
 
   private addLights() {
-    this.mainLight = new THREE.PointLight(0xFFD3A5, 50, 100); // Warm Sunset Light
+    this.mainLight = new THREE.PointLight(0xFFD3A5, 50, 100); 
     this.mainLight.position.set(5, 5, 5);
     this.scene.add(this.mainLight);
     
-    const skyLight = new THREE.HemisphereLight(0x2D89C8, 0xFFA500, 2); // Blue sky & Sand bounce
+    const skyLight = new THREE.HemisphereLight(0x2D89C8, 0xFFA500, 2); 
     this.scene.add(skyLight);
   }
 
@@ -155,17 +153,17 @@ export class Main {
         this.mainLight.color.setHex(0xFFD3A5);
         break;
       case '2':
-        this.targetPos.set(-4, 0, 2); // Move model left as user reads card on right
+        this.targetPos.set(-4, 0, 2); 
         this.targetRot.set(0, Math.PI / 4, 0);
         this.mainLight.color.setHex(0x2D89C8);
         break;
       case '3':
-        this.targetPos.set(7, 0, -2); // Move model right
+        this.targetPos.set(7, 0, -2); 
         this.targetRot.set(0, -Math.PI / 4, 0);
         this.mainLight.color.setHex(0xFFFFFF);
         break;
       case '4':
-        this.targetPos.set(0, 0, 6); // Move model close to camera for CTA
+        this.targetPos.set(0, 0, 6); 
         this.targetRot.set(0, Math.PI * 2, 0);
         break;
     }

@@ -17,7 +17,7 @@ export class ThreeD {
   private controls!: PointerLockControls;
   private frameId: number | null = null;
   public raycaster = new THREE.Raycaster();
-  
+
   private pointer = new THREE.Vector2(0, 0); // Center of screen
 
   // State for UI
@@ -31,7 +31,7 @@ export class ThreeD {
   private velocity = new THREE.Vector3();
   private direction = new THREE.Vector3();
 
-  
+
 
   ngOnInit() {
     this.initThree();
@@ -51,7 +51,7 @@ export class ThreeD {
     this.scene.background = new THREE.Color(0xdddddd);
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.set(0, 30, 5); // Human eye level
+    this.camera.position.set(0, 50, 5);
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -68,7 +68,6 @@ export class ThreeD {
     this.controls.addEventListener('lock', () => { if (instructions) instructions.style.display = 'none'; });
     this.controls.addEventListener('unlock', () => { if (instructions) instructions.style.display = 'flex'; });
 
-    // FIX: Property 'getObject' does not exist. Use 'object' instead.
     this.scene.add(this.controls.object);
   }
 
@@ -79,6 +78,11 @@ export class ThreeD {
       case 'KeyA': this.moveLeft = true; break;
       case 'KeyS': this.moveBackward = true; break;
       case 'KeyD': this.moveRight = true; break;
+      case 'Space':
+        if (this.controls.isLocked) {
+          this.controls.unlock();
+        }
+        break;
     }
   }
 
@@ -100,13 +104,11 @@ export class ThreeD {
   }
 
   private checkIntersections() {
-    // Raycast from the center of the camera
     this.raycaster.setFromCamera(this.pointer, this.camera);
     const intersects = this.raycaster.intersectObjects(this.scene.children, true);
 
     if (intersects.length > 0) {
       const firstObject = intersects[0].object;
-      // Filter out floor/walls if you named them in Blender, otherwise it shows everything
       if (firstObject.name && firstObject.name !== 'Floor' && firstObject.name !== 'Wall') {
         this.hoveredObjectName = firstObject.name;
         return;
@@ -115,12 +117,11 @@ export class ThreeD {
     this.hoveredObjectName = null;
   }
   public openDonation(event: MouseEvent) {
-    event.stopPropagation(); // Prevents the click from triggering other events
-    
-    // Replace this URL with your actual donation link
+    event.stopPropagation();
     const donationUrl = 'https://www.buymeacoffee.com/yourusername';
     window.open(donationUrl, '_blank');
   }
+
   private animate() {
     this.frameId = requestAnimationFrame(() => this.animate());
 
@@ -130,12 +131,12 @@ export class ThreeD {
       this.velocity.x -= this.velocity.x * 10.0 * delta;
       this.velocity.z -= this.velocity.z * 10.0 * delta;
 
-      this.direction.z = Number(this.moveForward) - Number(this.moveBackward) *10;
-      this.direction.x = Number(this.moveRight) - Number(this.moveLeft) *10;
+      this.direction.z = Number(this.moveForward) - Number(this.moveBackward) * 100;
+      this.direction.x = Number(this.moveRight) - Number(this.moveLeft) * 100;
       this.direction.normalize();
 
-      if (this.moveForward || this.moveBackward) this.velocity.z -= this.direction.z * 400.0 * delta;
-      if (this.moveLeft || this.moveRight) this.velocity.x -= this.direction.x * 400.0 * delta;
+      if (this.moveForward || this.moveBackward) this.velocity.z -= this.direction.z * 400.0 * delta *2;
+      if (this.moveLeft || this.moveRight) this.velocity.x -= this.direction.x * 400.0 * delta * 2 ;
 
       this.controls.moveRight(-this.velocity.x * delta);
       this.controls.moveForward(-this.velocity.z * delta);

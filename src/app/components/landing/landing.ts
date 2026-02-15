@@ -42,7 +42,6 @@ constructor() {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     el.appendChild(this.renderer.domElement);
 
-    // --- GENERATE NEURAL ABYSS ---
     const count = 1200;
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -77,7 +76,6 @@ constructor() {
     }));
     this.scene.add(this.lines);
 
-    // --- THE DODECAHEDRON CORE ---
     this.core = new THREE.Group();
     const coreGeo = new THREE.DodecahedronGeometry(3, 0);
     const inner = new THREE.Mesh(coreGeo, new THREE.MeshPhongMaterial({ 
@@ -103,11 +101,9 @@ constructor() {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const p = this.scrollY / (maxScroll || 1);
 
-    // The Big Dive
     const targetZ = 10 - (p * 165);
     this.camera.position.z = THREE.MathUtils.lerp(this.camera.position.z, targetZ, 0.05);
 
-    // Core Animation
     this.core.rotation.y += 0.005 + (p * 0.05);
     this.core.rotation.x += 0.002;
     this.core.scale.setScalar(1 + (p * 1.5));
