@@ -1,5 +1,19 @@
 <div #container class="gallery-container">
     <div class="crosshair">+</div>
+
+    <div class="info-panel" *ngIf="hoveredObjectName">
+        <h3>Artifact Spotted</h3>
+        <p>Item: {{ hoveredObjectName }}</p>
+        
+        <button class="support-button" (click)="openDonation($event)">
+            Support this Artist
+        </button>
+        
+        <small style="display: block; margin-top: 10px; opacity: 0.6;">
+            Press ESC to use mouse
+        </small>
+    </div>
+
     <div class="instructions" id="instructions">
         <h1>Click to Enter Gallery</h1>
         <p>(W,A,S,D to Walk | Mouse to Look)</p>
