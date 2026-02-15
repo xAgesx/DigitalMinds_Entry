@@ -1,0 +1,56 @@
+:host {
+  display: block;
+  background-color: #000;
+  width: 100%;
+}
+
+.canvas-layer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scroll-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.step-section {
+  height: 250vh; /* This provides the scroll "space" */
+  display: flex;
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+
+.center { justify-content: center; align-items: center; text-align: center; }
+.flex-end { justify-content: flex-end; align-items: center; }
+
+.card {
+  color: white;
+  transition: opacity 1s ease, transform 1s ease;
+  max-width: 500px;
+}
+
+.info {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 50px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 { font-size: 8rem; margin: 0; letter-spacing: -5px; line-height: 0.9; }
+h2 { font-size: 3.5rem; color: #6366f1; margin-bottom: 20px; }
+.tag { display: inline-block; margin-top: 20px; font-family: monospace; color: #10b981; }
+
+.neon-btn {
+  background: #6366f1; color: white; border: none; padding: 20px 40px;
+  border-radius: 50px; font-weight: bold; cursor: pointer;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+/* Ensure bottom doesn't cut off */
+section:last-child { height: 100vh; }

@@ -1,0 +1,159 @@
+:host {
+  cursor: none !important;
+  display: block;
+}
+
+.cursor-dot, 
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  width: 6px; height: 6px;
+  background: #2D89C8;
+}
+
+.cursor-ring {
+  width: 35px; height: 35px;
+  border: 1px solid rgba(45, 137, 200, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cursor-active .cursor-ring {
+  width: 50px; height: 50px;
+  background: rgba(45, 137, 200, 0.1);
+}
+
+.renderer-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  z-index: 1;
+  background: #F5F7FA;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0; width: 100%;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1001;
+  box-sizing: border-box;
+}
+
+.logo {
+  color: #2D89C8;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: #2D3436;
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav-btn {
+  background: #2D89C8;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 30px;
+  margin-left: 30px;
+  cursor: none;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #2D89C8;
+}
+
+.scroll-container {
+  position: relative;
+  z-index: 10;
+}
+
+.step {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  border-radius: 50px 5px 50px 5px; /* Asymmetrical Tunisian Arches */
+  color: #2D3436;
+  max-width: 450px;
+  padding: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(45, 137, 200, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.arabic {
+  display: block;
+  font-size: 1.5rem;
+  color: #2D89C8;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #2D89C8, #1e6291);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(45, 137, 200, 0.1);
+  color: #2D89C8;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.stat h3 { color: #2D89C8; font-size: 2.5rem; }
+
+.primary-btn {
+  background: #2D89C8;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 40px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.footer-step {
+  height: 60vh;
+  background: #F5F7FA;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links h4 { color: #2D89C8; margin-bottom: 20px; }
+.footer-links a { color: #2D3436; opacity: 0.7; text-decoration: none; margin-bottom: 10px; display: block; }

@@ -1,0 +1,38 @@
+<div class="main-container">
+  <div #canvasContainer class="canvas-layer"></div>
+
+  <div class="scroll-wrapper">
+    <section class="step-section center">
+      <div class="card hero" [style.opacity]="getOpacity(0, 0.15)">
+        <h1>NEURAL_CORE</h1>
+        <p>INITIATING DIVE</p>
+      </div>
+    </section>
+
+    <section class="step-section flex-end">
+      <div class="card info" 
+           [style.opacity]="getOpacity(0.2, 0.5)"
+           [style.transform]="getTransform(0.2, 0.5)">
+        <h2>Digital Minds</h2>
+        <p>A specialized club for neural architects. We explore the intersection of human cognition and generative lattices.</p>
+        <div class="tag">ACTIVE_NODE</div>
+      </div>
+    </section>
+
+    <section class="step-section">
+      <div class="card center" 
+           [style.opacity]="getOpacity(0.55, 0.85)"
+           [style.transform]="getTransform(0.55, 0.85)">
+        <h2>CORE LATTICE</h2>
+        <p>Mathematical structures within the synaptic void.</p>
+      </div>
+    </section>
+
+    <section class="step-section center">
+      <div class="card" [style.opacity]="getOpacity(0.9, 1)">
+        <h2>JOIN_THE_SYNC</h2>
+        <button class="neon-btn">INITIALIZE</button>
+      </div>
+    </section>
+  </div>
+</div>

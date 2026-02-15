@@ -1,0 +1,56 @@
+:host {
+  display: block;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.canvas-wrapper {
+  position: fixed; inset: 0; z-index: 1; background: #000;
+}
+
+.scroll-spacer {
+  height: 1200vh; pointer-events: none;
+}
+
+.overlay-ui {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  color: #6366f1; font-family: 'JetBrains Mono', monospace;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  pointer-events: none;
+
+  &.hidden { opacity: 0; transform: translateY(-50px); }
+
+  .hero {
+    text-align: center;
+    h1 { font-size: clamp(2rem, 10vw, 5rem); letter-spacing: 20px; margin: 0; }
+    p { letter-spacing: 5px; opacity: 0.6; margin-top: 1rem; }
+  }
+
+  .indicator {
+    position: absolute; bottom: 10%;
+    display: flex; flex-direction: column; align-items: center; gap: 15px;
+    .mouse {
+      width: 22px; height: 35px; border: 2px solid #6366f1; border-radius: 20px;
+      .wheel {
+        width: 2px; height: 6px; background: #6366f1; margin: 6px auto;
+        animation: scrollPulse 1.5s infinite;
+      }
+    }
+    span { font-size: 0.7rem; letter-spacing: 3px; }
+  }
+}
+
+.depth-stats {
+  position: fixed; top: 40px; right: 40px; z-index: 10;
+  font-family: monospace; text-align: right;
+  opacity: 0; transition: opacity 1s;
+  &.visible { opacity: 1; }
+  .stat { color: #10b981; font-size: 1rem; letter-spacing: 1px; margin-bottom: 5px; }
+}
+
+@keyframes scrollPulse {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}

@@ -1,0 +1,23 @@
+<div class="landing-page">
+  <div #canvasContainer class="canvas-wrapper"></div>
+  <div class="scroll-spacer"></div>
+
+  <div class="overlay-ui" [class.hidden]="hasScrolled">
+    <div class="hero">
+      <h1>NEURAL_CORE</h1>
+      <p>SYSTEM_INITIALIZED // DEEP_DIVE_READY</p>
+    </div>
+
+    <div class="indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span>SCROLL_TO_ENTER</span>
+    </div>
+  </div>
+
+  <div class="depth-stats" [class.visible]="hasScrolled">
+    <div class="stat">DEPTH: {{ (scrollY / 10).toFixed(0) }}m</div>
+    <div class="stat">SIGNAL: {{ (95 + (scrollY % 5)).toFixed(0) }}%</div>
+  </div>
+</div>
